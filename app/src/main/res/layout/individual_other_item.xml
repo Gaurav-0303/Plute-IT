@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/appbackcolor1">
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/others_card"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.1"
+        android:clickable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="05dp"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/rubiksemibold"
+                android:textColor="@color/pluteblue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Kotlin" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="05dp"
+                android:layout_marginTop="05dp"
+                android:layout_marginEnd="05dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/rubikregular"
+                android:gravity="start"
+                android:maxLines="3"
+                android:textColor="#555D60"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/featureChips"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:text=": An officially supported language for Android app development. Latest major version: Kotlin 1.5. Widely used as an alternative to Java for Android development, offering concise syntax and improved safety features." />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/featureChips"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="05dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal"
+                android:theme="@style/Theme.MaterialComponents.Bridge"
+                app:layout_constraintBottom_toTopOf="@id/image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/featureChips" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+
+</RelativeLayout>
+
+

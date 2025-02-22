@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:color="#FFFFFFFF"
+        android:icon="@drawable/baseline_breakfast_dining_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/plute"
+        android:color="#FFFFFFFF"
+        android:icon="@drawable/baseline_data_object_24"
+        android:title="Plutecoder"/>
+
+    <item
+        android:id="@+id/about"
+        android:color="@android:color/holo_orange_dark"
+        android:icon="@drawable/baseline_featured_play_list_24"
+        android:title="About"/>
+
+    <item
+        android:id="@+id/contact"
+        android:color="#FF5252"
+        android:icon="@drawable/baseline_cable_24"
+        android:title="Connect" />
+</menu>

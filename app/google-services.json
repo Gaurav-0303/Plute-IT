@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "889756982925",
+    "firebase_url": "https://pluteit-205c0-default-rtdb.firebaseio.com",
+    "project_id": "pluteit-205c0",
+    "storage_bucket": "pluteit-205c0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889756982925:android:d517b12d891c909d428cc4",
+        "android_client_info": {
+          "package_name": "com.plutecoder.itworld"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcPMTLceq6lWV6i2bt2_FgPagDCwejvj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
