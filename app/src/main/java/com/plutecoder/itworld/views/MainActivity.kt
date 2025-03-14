@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.databinding.ActivityMainBinding
 import com.plutecoder.itworld.fragments.AboutFragment
@@ -19,45 +20,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        window.setFlags(
-//            WindowManager.LayoutParams.FLAG_SECURE,
-//            WindowManager.LayoutParams.FLAG_SECURE
-//        )
 
-        if (this.isDarkModeEnabled(this)) {
+        if (isDarkModeEnabled(this)) {
             binding.bottom.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
             binding.bottom.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
         }
 
-        findViewById<me.ibrahimsn.lib.SmoothBottomBar>(R.id.bottomBar).setOnItemSelectedListener { it: Int ->
+        binding.bottomBar.setOnItemSelectedListener { it: Int ->
             when(it){
-
-               0 -> {
-                    attachFragment(HomeFragment())
-                }
-               1 ->{
-                    attachFragment(PlutecoderFragment())
-                }
-               2 ->{
-                    attachFragment(AboutFragment())
-                }
-               3 ->{
-                   attachFragment(ConnectFragment())
-               }
+                0 -> navigateFragment(HomeFragment(), "", "", "Home")
+                1 -> navigateFragment(PlutecoderFragment(), "", "", "Plutecoder")
+                2 -> navigateFragment(AboutFragment(), "", "", "About")
+                3 -> navigateFragment(ConnectFragment(), "", "", "Connect")
             }
 
         }
-
-
-        attachFragment(HomeFragment())
+        navigateFragment(HomeFragment(), "", "", "Home")
     }
-//
-    private fun attachFragment(fragment : Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.container, fragment, "")
-            .commit()
 
+    //it will load fragment into container
+    private fun navigateFragment(fragment: Fragment, key: String, value: String, title: String) {
+        val bundle = Bundle().apply {
+            putString(key, value)
+        }
+        fragment.arguments = bundle
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        runOnUiThread {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, fragment)
+                .commit()
+        }
     }
+
+
 
 }

@@ -1,6 +1,5 @@
 package com.plutecoder.itworld.views
 
-import android.graphics.Color
 import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
@@ -11,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.databinding.ActivityDetailedTechHubBinding
 import com.plutecoder.itworld.models.CategoryItem
+import androidx.core.graphics.toColorInt
 
 class DetailedTechHubActivity : AppCompatActivity() {
 
@@ -32,19 +32,18 @@ class DetailedTechHubActivity : AppCompatActivity() {
 
         setUpWebView()
 
-
         var imgurl= "<img src='${categoryItem.basicRoadmap}' width='100%' height='100%'/>"
         webview.loadData(imgurl, "text/html", "UTF-8")
 
-        if (this.isDarkModeEnabled(this)) {
+        if (isDarkModeEnabled(this)) {
             binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
             binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
         }
     }
 
     private fun setUpWebView() {
-        webview!!.setBackgroundColor(Color.parseColor("#f1f1f1"));
-        webview!!.settings.builtInZoomControls = true
+        webview.setBackgroundColor("#f1f1f1".toColorInt());
+        webview.settings.builtInZoomControls = true
         webview.setWebChromeClient(WebChromeClient())
         webview.getSettings().setAllowFileAccess(true)
         webview.getSettings().setPluginState(WebSettings.PluginState.ON)

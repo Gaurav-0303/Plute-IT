@@ -18,16 +18,4 @@ class AboutFragment   : Fragment() {
         return inflater.inflate(R.layout.fragment_about, container, false)
 
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-//
-//        language_card.setOnClickListener {
-//            val intent = Intent(requireContext(), UpdateProfile::class.java)
-//            requireContext().startActivity(intent)
-//        }
-
-
-    }
-
 }

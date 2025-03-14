@@ -14,7 +14,6 @@ import com.plutecoder.itworld.viewModels.CategoryItemsViewModel
 
 class TechnologiesActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: CategoryItemsViewModel
     private lateinit var categoryItemGridAdapter: CategoryItemGridAdapter
     private lateinit var binding: CategoryItemGridBinding
     private lateinit var progressBar: ProgressDialog
@@ -32,7 +31,7 @@ class TechnologiesActivity : AppCompatActivity() {
             setProgressStyle(ProgressDialog.STYLE_SPINNER)
         }
 
-        viewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
+        val viewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
 
         val category = intent.getSerializableExtra("category") as Category
 
@@ -40,7 +39,6 @@ class TechnologiesActivity : AppCompatActivity() {
         binding.techrecycler.layoutManager = GridLayoutManager(this, 2)
         categoryItemGridAdapter = CategoryItemGridAdapter(this, ArrayList(), category.uid)
         binding.techrecycler.adapter = categoryItemGridAdapter
-
 
         //fill title bar
         binding.header.title.text = category.title

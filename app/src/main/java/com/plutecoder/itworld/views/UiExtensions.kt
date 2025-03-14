@@ -30,11 +30,6 @@ fun Context.showUsesDialog(uses: Uses) {
 
     dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-//    dialog.window?.setLayout(
-//        (resources.displayMetrics.widthPixels * 0.85).toInt(),
-//        android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-//    )
-
     // Set custom view
     dialog.setContentView(view)
     dialog.setCancelable(true)
@@ -42,6 +37,6 @@ fun Context.showUsesDialog(uses: Uses) {
 
 }
 
-fun Context.isDarkModeEnabled(context: Context): Boolean {
+fun isDarkModeEnabled(context: Context): Boolean {
     return context.resources.configuration.uiMode==33
 }

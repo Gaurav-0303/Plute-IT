@@ -18,9 +18,7 @@ import com.plutecoder.itworld.viewModels.CategoryViewModel
 class HomeFragment : Fragment() {
 
     private lateinit var adapter: CategoryAdapter
-    private lateinit var viewModel: CategoryViewModel
     private lateinit var binding: HomeFragmentBinding
-    private lateinit var progressBar: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -38,14 +36,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize progress bar
-        progressBar = ProgressDialog(requireContext()).apply {
+        val progressBar = ProgressDialog(requireContext()).apply {
             setMessage("Loading...")
             setCancelable(false)
             setProgressStyle(ProgressDialog.STYLE_SPINNER)
         }
 
         // Initialize ViewModel
-        viewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
+        val viewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
 
         // Initialize RecyclerView
         binding.gridRv.layoutManager = GridLayoutManager(requireContext(), 2)

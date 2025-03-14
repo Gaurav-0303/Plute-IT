@@ -9,9 +9,7 @@ import com.plutecoder.itworld.models.CategoryItem
 
 class RelatedItemsAdapter(val context : Context, val itemList : ArrayList<CategoryItem>) : RecyclerView.Adapter<RelatedItemsAdapter.MyViewHolder>() {
 
-    inner class MyViewHolder(val binding : IndividualRelatedItemBinding) : RecyclerView.ViewHolder(binding.root){
-
-    }
+    inner class MyViewHolder(val binding : IndividualRelatedItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = IndividualRelatedItemBinding.inflate(LayoutInflater.from(context), parent, false)

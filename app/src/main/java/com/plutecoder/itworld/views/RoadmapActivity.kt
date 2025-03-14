@@ -29,18 +29,11 @@ class RoadmapActivity : AppCompatActivity() {
 
         webview = findViewById(R.id.webview)
 
-        // Disable screenshots
-//        window.setFlags(
-//            WindowManager.LayoutParams.FLAG_SECURE,
-//            WindowManager.LayoutParams.FLAG_SECURE
-//        )
-
         val categoryItem = intent.getSerializableExtra("category_item") as CategoryItem
-        val categoryUid = intent.getStringExtra("category_uid") as String
 
         //bottom sheet opening
         findViewById<ImageView>(R.id.open_framework).setOnClickListener {
-            val relatedItemsFragment = RelatedItemsFragment(categoryUid, categoryItem.uid!!)
+            val relatedItemsFragment = RelatedItemsFragment(categoryItem.uid!!)
             relatedItemsFragment.show(supportFragmentManager, relatedItemsFragment.tag)
         }
 
@@ -52,7 +45,7 @@ class RoadmapActivity : AppCompatActivity() {
         var imgurl= "<img src='${categoryItem.basicRoadmap}' width='100%' height='100%'/>"
         webview.loadData(imgurl, "text/html", "UTF-8")
 
-        if (this.isDarkModeEnabled(this)) {
+        if (isDarkModeEnabled(this)) {
             binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
             binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
         }
@@ -72,7 +65,6 @@ class RoadmapActivity : AppCompatActivity() {
         webview.getSettings().setDisplayZoomControls(false);
 
         val display = windowManager.defaultDisplay
-        val width = display.width
 
         // Enable support for zooming and scaling
         webview.settings.setSupportZoom(true)

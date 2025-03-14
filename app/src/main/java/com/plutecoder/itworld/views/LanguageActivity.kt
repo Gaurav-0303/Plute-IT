@@ -15,8 +15,6 @@ class LanguageActivity : AppCompatActivity() {
 
     private lateinit var binding : CategoryItemListBinding
     private lateinit var categoryItemListAdapter: CategoryItemListAdapter
-    private lateinit var progressBar: ProgressDialog
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +22,13 @@ class LanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //initialize progress bar
-        progressBar = ProgressDialog(this).apply {
+        val progressBar = ProgressDialog(this).apply {
             setMessage("Loading...")
             setCancelable(false)
             setProgressStyle(ProgressDialog.STYLE_SPINNER)
         }
 
-        var viewModel: CategoryItemsViewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
+        val viewModel: CategoryItemsViewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
 
         val category = intent.getSerializableExtra("category") as Category
 

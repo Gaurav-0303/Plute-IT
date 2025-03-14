@@ -13,12 +13,11 @@ import com.plutecoder.itworld.databinding.FragmentRelatedItemsBinding
 import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.viewModels.RelatedItemsViewModel
 
-class RelatedItemsFragment(var categoryUid: String, var categoryItemUid: String) : BottomSheetDialogFragment() {
+class RelatedItemsFragment(private var categoryItemUid: String) : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentRelatedItemsBinding
     private lateinit var myAdapter: RelatedItemsAdapter
     private lateinit var itemList: ArrayList<CategoryItem>
-    private lateinit var viewModel: RelatedItemsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +30,7 @@ class RelatedItemsFragment(var categoryUid: String, var categoryItemUid: String)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[RelatedItemsViewModel::class.java]
+        val viewModel = ViewModelProvider(this)[RelatedItemsViewModel::class.java]
 
         (view.parent as View).setBackgroundColor(resources.getColor(android.R.color.transparent))
 

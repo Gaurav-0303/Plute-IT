@@ -13,7 +13,6 @@ import com.plutecoder.itworld.viewModels.CategoryItemsViewModel
 
 class TechHubActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: CategoryItemsViewModel
     private lateinit var binding : ActivityTechHubBinding
     private lateinit var techHubItemAdapter: TechHubItemAdapter
     private lateinit var progressBar: ProgressDialog
@@ -30,7 +29,7 @@ class TechHubActivity : AppCompatActivity() {
             setProgressStyle(ProgressDialog.STYLE_SPINNER)
         }
 
-        viewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
+        val viewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
 
         // Initialize the adapter
         techHubItemAdapter = TechHubItemAdapter(this, ArrayList())
