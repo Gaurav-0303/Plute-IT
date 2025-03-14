@@ -10,6 +10,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.databinding.WebpngBinding
 import com.plutecoder.itworld.models.CategoryItem
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         val categoryUid = intent.getStringExtra("category_uid") as String
 
         //bottom sheet opening
-        findViewById<ImageView>(R.id.open_framwework).setOnClickListener {
+        findViewById<ImageView>(R.id.open_framework).setOnClickListener {
             val bottomSheetFragment = BottomSheetFragment(categoryUid, categoryItem.uid!!)
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
         }
@@ -50,6 +51,11 @@ class MainActivity : AppCompatActivity() {
 
         var imgurl= "<img src='${categoryItem.basicRoadmap}' width='100%' height='100%'/>"
         webview.loadData(imgurl, "text/html", "UTF-8")
+
+        if (this.isDarkModeEnabled(this)) {
+            binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
+            binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
+        }
     }
 
     private fun setUpWebView() {

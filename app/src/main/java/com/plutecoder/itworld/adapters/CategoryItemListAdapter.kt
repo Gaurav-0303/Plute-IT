@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.plutecoder.itworld.views.MainActivity
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.models.CategoryItem
+import com.plutecoder.itworld.views.isDarkModeEnabled
 import com.plutecoder.itworld.views.showUsesDialog
 
 class CategoryItemListAdapter(private val context: Context, private var itemList: ArrayList<CategoryItem>, var categoryUID : String?) :
@@ -62,6 +64,11 @@ class CategoryItemListAdapter(private val context: Context, private var itemList
                 intent.putExtra("category_uid", categoryUID)
                 context.startActivity(intent)
             }
+
+        if (context.isDarkModeEnabled(context)) {
+            holder.itemView.findViewById<soup.neumorphism.NeumorphCardView>(R.id.row_click).setShadowColorLight(ContextCompat.getColor(context, R.color.neumorph_shadow_light))
+            holder.itemView.findViewById<soup.neumorphism.NeumorphCardView>(R.id.row_click).setShadowColorDark(ContextCompat.getColor(context, R.color.neumorph_shadow_dark))
+        }
 
     }
 

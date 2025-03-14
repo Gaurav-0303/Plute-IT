@@ -12,16 +12,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppThemeFullScreen"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".views.DetailedTechHubActivity"
+            android:theme="@style/ItemBg"
             android:exported="false" />
         <activity
             android:name=".views.TechHubActivity"
+            android:theme="@style/ItemBg"
             android:exported="false" />
         <activity
             android:name=".views.BottomBarActivity"
+            android:theme="@style/ItemBg"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,15 +32,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".views.LanguageActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".views.TechnologiesActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".views.MainActivity"
-            android:theme="@style/AppTheme" />
+        <activity android:name=".views.LanguageActivity"
+            android:theme="@style/ItemBg"
+            />
+        <activity android:name=".views.TechnologiesActivity"
+            android:theme="@style/ItemBg"
+            />
+        <activity android:name=".views.MainActivity"
+            android:theme="@style/ItemBg"
+            />
 
     </application>
 

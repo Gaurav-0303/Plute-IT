@@ -57,7 +57,7 @@ class RelatedItemsViewModel : ViewModel() {
 
         // Query items using Firebase indexing
         for (itemUid in relatedItemUids) {
-            database.child("items").orderByChild("Uid").equalTo(itemUid)
+            database.child("items").orderByChild("uid").equalTo(itemUid)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (itemSnapshot in snapshot.children) {

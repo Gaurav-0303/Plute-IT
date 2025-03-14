@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.plutecoder.itworld.R
 import com.plutecoder.itworld.adapters.MainGridAdapter
 import com.plutecoder.itworld.databinding.HomeFragmentBinding
 import com.plutecoder.itworld.models.Category
@@ -21,18 +23,21 @@ class HomeFragment : Fragment() {
     private lateinit var progressBar: ProgressDialog
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = HomeFragmentBinding.inflate(inflater, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        // Apply the TechHubDark theme
+        val contextThemeWrapper = ContextThemeWrapper(requireActivity(), R.style.ItemBg)
+        val themedInflater = inflater.cloneInContext(contextThemeWrapper)
+
+        binding = HomeFragmentBinding.inflate(themedInflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //initialize progress bar
+        // Initialize progress bar
         progressBar = ProgressDialog(requireContext()).apply {
             setMessage("Loading...")
             setCancelable(false)
@@ -47,7 +52,6 @@ class HomeFragment : Fragment() {
         adapter = MainGridAdapter(requireContext(), emptyList())
         binding.gridRv.adapter = adapter
 
-
         // Observe ViewModel
         viewModel.categoriesList.observe(viewLifecycleOwner) { categories ->
             updateRecyclerView(categories)
@@ -55,7 +59,7 @@ class HomeFragment : Fragment() {
 
         // Observe loading state
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-             if (isLoading) progressBar.show() else progressBar.hide()
+            if (isLoading) progressBar.show() else progressBar.hide()
         }
     }
 

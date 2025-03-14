@@ -13,7 +13,6 @@ import com.plutecoder.itworld.viewModels.CategoryItemsViewModel
 
 class LanguageActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: CategoryItemsViewModel
     private lateinit var binding : LanguageScreenBinding
     private lateinit var categoryItemListAdapter: CategoryItemListAdapter
     private lateinit var progressBar: ProgressDialog
@@ -31,7 +30,7 @@ class LanguageActivity : AppCompatActivity() {
             setProgressStyle(ProgressDialog.STYLE_SPINNER)
         }
 
-        viewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
+        var viewModel: CategoryItemsViewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
 
         val category = intent.getSerializableExtra("category") as Category
 

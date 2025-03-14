@@ -4,13 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:background="@color/appbackcolor1"
     android:layout_height="match_parent"
     tools:context=".views.TechHubActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/others_rv"
-        android:background="@color/appbackcolor1"
         tools:listitem="@layout/individual_other_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

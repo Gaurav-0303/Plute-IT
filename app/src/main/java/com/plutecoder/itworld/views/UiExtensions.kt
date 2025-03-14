@@ -41,3 +41,7 @@ fun Context.showUsesDialog(uses: Uses) {
     dialog.show()
 
 }
+
+fun Context.isDarkModeEnabled(context: Context): Boolean {
+    return context.resources.configuration.uiMode==33
+}

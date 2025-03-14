@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/appbackcolor1">
+    >
 
     <soup.neumorphism.NeumorphCardView
         android:id="@+id/others_card"
@@ -27,8 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="05dp"
                 android:layout_marginBottom="6dp"
+                style="@style/ItemTextBg"
                 android:fontFamily="@font/rubiksemibold"
-                android:textColor="@color/pluteblue"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/description"
                 app:layout_constraintStart_toStartOf="parent"

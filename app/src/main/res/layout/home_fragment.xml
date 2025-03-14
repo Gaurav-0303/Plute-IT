@@ -1,281 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#f1f1f1"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/titleh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nunitosansregular"
-        android:text="Welcome \nPlutecoder"
-        android:textColor="@color/pluteblue"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:layout_alignParentTop="true"
+        android:fontFamily="@font/nunitosansregular"
+        android:text="Welcome \nPlutecoder"
         android:textSize="22sp" />
 
     <TextView
         android:id="@+id/titlehcontent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/titleh"
+        android:layout_marginStart="15dp"
         android:fontFamily="@font/nunitosanslight"
         android:text="PluteIt by Plutecoder: Your Guide to Tech Language Roadmaps"
-        android:textColor="@color/pluteblue"
-        android:layout_marginStart="15dp"
-        android:layout_below="@+id/titleh"
         android:textSize="16sp" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/grid_rv"
-        android:backgroundTint="#f1f1f1"
-        android:layout_marginTop="24dp"
-        android:layout_below="@id/titlehcontent"
-        tools:listitem="@layout/main_grid_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f1f1f1"
-        />
-
-
-<!--    <GridLayout-->
-<!--        android:id="@+id/GridLayout1"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:columnCount="2"-->
-<!--        android:background="#f1f1f1"-->
-<!--        android:orientation="horizontal">-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_columnWeight="1">-->
-
-<!--            <soup.neumorphism.NeumorphCardView-->
-<!--                android:id="@+id/language_card"-->
-<!--                style="@style/Widget.Neumorph.CardView"-->
-<!--                android:layout_width="200dp"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:clickable="true"-->
-
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_weight="0.1"-->
-
-
-<!--                >-->
-
-<!--                <RelativeLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent">-->
-
-<!--                    <ImageView-->
-<!--                        android:layout_width="90dp"-->
-<!--                        android:background="@drawable/programing"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_marginTop="07dp"-->
-<!--                        android:layout_height="90dp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textviel"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_above="@+id/textviewlc"-->
-<!--                        android:layout_centerInParent="true"-->
-<!--                        android:fontFamily="@font/rubiksemibold"-->
-<!--                        android:text="Languages"-->
-<!--                        android:textColor="@color/pluteblue"-->
-<!--                        android:textSize="16sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textviewlc"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_alignParentBottom="true"-->
-<!--                        android:layout_centerInParent="true"-->
-<!--                        android:layout_marginStart="05dp"-->
-<!--                        android:layout_marginTop="05dp"-->
-<!--                        android:layout_marginEnd="05dp"-->
-<!--                        android:layout_marginBottom="05dp"-->
-<!--                        android:fontFamily="@font/rubikregular"-->
-<!--                        android:gravity="center"-->
-<!--                        android:text="languages and frameworks, some more data"-->
-<!--                        android:textColor="#555D60"-->
-<!--                        android:textSize="12sp" />-->
-<!--                </RelativeLayout>-->
-<!--            </soup.neumorphism.NeumorphCardView>-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_columnWeight="1">-->
-
-<!--            <soup.neumorphism.NeumorphCardView-->
-<!--                android:id="@+id/techcard"-->
-<!--                style="@style/Widget.Neumorph.CardView"-->
-<!--                android:layout_width="200dp"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:clickable="true"-->
-<!--                android:layout_weight="0.1"-->
-
-
-<!--                >-->
-
-<!--                <RelativeLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent">-->
-<!--                    <ImageView-->
-<!--                        android:layout_width="110dp"-->
-<!--                        android:background="@drawable/roadmap"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_marginTop="07dp"-->
-<!--                        android:layout_height="90dp"></ImageView>-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textviero"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_above="@+id/textviewrode"-->
-<!--                        android:layout_centerInParent="true"-->
-<!--                        android:fontFamily="@font/rubiksemibold"-->
-<!--                        android:text="Technologies"-->
-<!--                        android:textColor="@color/pluteblue"-->
-<!--                        android:textSize="16sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textviewrode"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_alignParentBottom="true"-->
-<!--                        android:layout_centerInParent="true"-->
-<!--                        android:layout_marginStart="05dp"-->
-<!--                        android:layout_marginTop="05dp"-->
-<!--                        android:layout_marginEnd="05dp"-->
-<!--                        android:layout_marginBottom="05dp"-->
-<!--                        android:fontFamily="@font/rubikregular"-->
-<!--                        android:gravity="center"-->
-<!--                        android:text="This is roadmap of all things, some more data here"-->
-<!--                        android:textColor="#555D60"-->
-<!--                        android:textSize="12sp" />-->
-<!--                </RelativeLayout>-->
-<!--            </soup.neumorphism.NeumorphCardView>-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_columnWeight="1">-->
-<!--            <soup.neumorphism.NeumorphCardView-->
-<!--                android:id="@+id/flat_cardfms"-->
-<!--                style="@style/Widget.Neumorph.CardView"-->
-<!--                android:layout_width="200dp"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:clickable="true"-->
-<!--                android:layout_weight="0.1"-->
-
-
-<!--                >-->
-
-<!--                <RelativeLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent">-->
-<!--                    <ImageView-->
-<!--                        android:layout_width="130dp"-->
-<!--                        android:background="@drawable/mustknows"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_marginTop="07dp"-->
-<!--                        android:layout_height="90dp"></ImageView>-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textviem"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_above="@+id/textviewmst"-->
-<!--                        android:layout_centerInParent="true"-->
-<!--                        android:fontFamily="@font/rubiksemibold"-->
-<!--                        android:text="MustKnows IT Term"-->
-<!--                        android:textColor="@color/pluteblue"-->
-<!--                        android:textSize="16sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textviewmst"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_alignParentBottom="true"-->
-<!--                        android:layout_centerInParent="true"-->
-<!--                        android:fontFamily="@font/rubikregular"-->
-<!--                        android:layout_margin="05dp"-->
-<!--                        android:gravity="center"-->
-<!--                        android:text="Must Knows IT Terms, its important"-->
-<!--                        android:textColor="#555D60"-->
-<!--                        android:textSize="12sp" />-->
-<!--                </RelativeLayout>-->
-<!--            </soup.neumorphism.NeumorphCardView>-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_columnWeight="1">-->
-
-<!--            <soup.neumorphism.NeumorphCardView-->
-<!--                android:id="@+id/flat_cardf"-->
-<!--                style="@style/Widget.Neumorph.CardView"-->
-<!--                android:layout_width="200dp"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:clickable="true"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_weight="0.1"-->
-
-
-<!--                >-->
-
-<!--                <RelativeLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent">-->
-<!--                    <ImageView-->
-<!--                        android:layout_width="90dp"-->
-<!--                        android:background="@drawable/db"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_marginTop="07dp"-->
-<!--                        android:layout_height="90dp"></ImageView>-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textvie"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_above="@+id/textview"-->
-<!--                        android:layout_centerInParent="true"-->
-<!--                        android:fontFamily="@font/rubiksemibold"-->
-<!--                        android:text="Database"-->
-<!--                        android:textColor="@color/pluteblue"-->
-<!--                        android:textSize="16sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textview"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_alignParentBottom="true"-->
-<!--                        android:layout_centerInParent="true"-->
-<!--                        android:fontFamily="@font/rubikregular"-->
-<!--                   android:layout_margin="05dp"-->
-<!--                        android:gravity="center"-->
-<!--                        android:text="Sql and No-Sql Database flow some more data"-->
-<!--                        android:textColor="#555D60"-->
-<!--                        android:textSize="12sp" />-->
-<!--                </RelativeLayout>-->
-<!--            </soup.neumorphism.NeumorphCardView>-->
-<!--        </LinearLayout>-->
-
-<!--    </GridLayout>-->
-
+        android:layout_below="@id/titlehcontent"
+        android:layout_marginTop="24dp"
+        tools:listitem="@layout/main_grid_item" />
 
 
 </RelativeLayout>

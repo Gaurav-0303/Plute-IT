@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/appbackcolor1"
     android:layout_height="wrap_content">
     <soup.neumorphism.NeumorphCardView
         android:id="@+id/row_click"
@@ -27,6 +26,7 @@ android:minHeight="100dp"
 
     <TextView
         android:id="@+id/txtlangname"
+        style="@style/ItemTextBg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -35,7 +35,6 @@ android:minHeight="100dp"
         android:layout_toRightOf="@+id/langimg"
         android:fontFamily="@font/rubiksemibold"
         android:text="Kotlin"
-        android:textColor="@color/pluteblue"
         android:textSize="16sp" />
 
     <TextView

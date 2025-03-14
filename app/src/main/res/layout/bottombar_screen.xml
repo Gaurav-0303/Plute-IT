@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/appbackcolor1">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/container"
@@ -30,12 +29,12 @@
                 android:id="@+id/bottomBar"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                app:backgroundColor="#f1f1f1"
                 app:iconTint="@color/color_textHomeActive"
                 app:iconTintActive="@color/color_textHomeInactive"
                 app:indicatorColor="@color/pluteblue"
                 app:itemFontFamily="@font/nunitosansregular"
                 app:menu="@menu/bottom_menu"
+                style="@style/SmoothBottomBar"
                 app:textColor="@color/pluteyellow"
                 app:textSize="11sp" />
         </RelativeLayout>

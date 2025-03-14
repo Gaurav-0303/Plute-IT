@@ -1,17 +1,23 @@
 package com.plutecoder.itworld.adapters
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.plutecoder.itworld.R
 import com.plutecoder.itworld.views.LanguageActivity
 import com.plutecoder.itworld.views.TechHubActivity
 import com.plutecoder.itworld.views.TechnologiesActivity
 import com.plutecoder.itworld.databinding.MainGridItemBinding
 import com.plutecoder.itworld.models.Category
+import com.plutecoder.itworld.views.isDarkModeEnabled
 
 
 class MainGridAdapter(private val context : Context, private val items: List<Category>) : RecyclerView.Adapter<MainGridAdapter.ViewHolder>() {
@@ -46,6 +52,11 @@ class MainGridAdapter(private val context : Context, private val items: List<Cat
                 intent.putExtra("category", items[position])
                 context.startActivity(intent)
             }
+        }
+
+        if (context.isDarkModeEnabled(context)) {
+            holder.binding.languageCard.setShadowColorLight(ContextCompat.getColor(context, R.color.neumorph_shadow_light))
+            holder.binding.languageCard.setShadowColorDark(ContextCompat.getColor(context, R.color.neumorph_shadow_dark))
         }
     }
 
