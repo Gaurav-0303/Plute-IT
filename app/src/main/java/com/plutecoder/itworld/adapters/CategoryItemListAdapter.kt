@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
-import com.plutecoder.itworld.views.MainActivity
+import com.plutecoder.itworld.views.RoadmapActivity
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.views.isDarkModeEnabled
@@ -26,7 +26,7 @@ class CategoryItemListAdapter(private val context: Context, private var itemList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferHolder {
         return OfferHolder(
 
-            LayoutInflater.from(context).inflate(R.layout.language_row, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.individual_list_item, parent, false)
 
         )
     }
@@ -59,7 +59,7 @@ class CategoryItemListAdapter(private val context: Context, private var itemList
 
 
         holder.itemView.findViewById<soup.neumorphism.NeumorphCardView>(R.id.row_click).setOnClickListener {
-                val intent = Intent(context, MainActivity::class.java)
+                val intent = Intent(context, RoadmapActivity::class.java)
                 intent.putExtra("category_item", itemList[position])
                 intent.putExtra("category_uid", categoryUID)
                 context.startActivity(intent)

@@ -1,13 +1,10 @@
 package com.plutecoder.itworld.adapters
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,14 +12,14 @@ import com.plutecoder.itworld.R
 import com.plutecoder.itworld.views.LanguageActivity
 import com.plutecoder.itworld.views.TechHubActivity
 import com.plutecoder.itworld.views.TechnologiesActivity
-import com.plutecoder.itworld.databinding.MainGridItemBinding
+import com.plutecoder.itworld.databinding.IndividualCategoryBinding
 import com.plutecoder.itworld.models.Category
 import com.plutecoder.itworld.views.isDarkModeEnabled
 
 
-class MainGridAdapter(private val context : Context, private val items: List<Category>) : RecyclerView.Adapter<MainGridAdapter.ViewHolder>() {
+class CategoryAdapter(private val context : Context, private val items: List<Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = MainGridItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = IndividualCategoryBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -64,7 +61,7 @@ class MainGridAdapter(private val context : Context, private val items: List<Cat
         return items.size
     }
 
-    class ViewHolder(var binding : MainGridItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(var binding : IndividualCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 }

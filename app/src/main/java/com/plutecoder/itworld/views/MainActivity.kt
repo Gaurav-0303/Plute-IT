@@ -1,93 +1,63 @@
 package com.plutecoder.itworld.views
 
-import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.plutecoder.itworld.R
-import com.plutecoder.itworld.databinding.WebpngBinding
-import com.plutecoder.itworld.models.CategoryItem
-import com.plutecoder.itworld.fragments.BottomSheetFragment
+import com.plutecoder.itworld.databinding.ActivityMainBinding
+import com.plutecoder.itworld.fragments.AboutFragment
+import com.plutecoder.itworld.fragments.ConnectFragment
+import com.plutecoder.itworld.fragments.HomeFragment
+import com.plutecoder.itworld.fragments.PlutecoderFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val handler = Handler(Looper.getMainLooper())
-    private lateinit var binding : WebpngBinding
-    private lateinit var webview : WebView
+    private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = WebpngBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        webview = findViewById(R.id.webview)
-
-        // Disable screenshots
 //        window.setFlags(
 //            WindowManager.LayoutParams.FLAG_SECURE,
 //            WindowManager.LayoutParams.FLAG_SECURE
 //        )
 
-        val categoryItem = intent.getSerializableExtra("category_item") as CategoryItem
-        val categoryUid = intent.getStringExtra("category_uid") as String
-
-        //bottom sheet opening
-        findViewById<ImageView>(R.id.open_framework).setOnClickListener {
-            val bottomSheetFragment = BottomSheetFragment(categoryUid, categoryItem.uid!!)
-            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
-        }
-
-        //show data in top bar
-        binding.header.title.text = categoryItem.name
-
-        setUpWebView()
-
-        var imgurl= "<img src='${categoryItem.basicRoadmap}' width='100%' height='100%'/>"
-        webview.loadData(imgurl, "text/html", "UTF-8")
-
         if (this.isDarkModeEnabled(this)) {
-            binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
-            binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
+            binding.bottom.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
+            binding.bottom.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
         }
+
+        findViewById<me.ibrahimsn.lib.SmoothBottomBar>(R.id.bottomBar).setOnItemSelectedListener { it: Int ->
+            when(it){
+
+               0 -> {
+                    attachFragment(HomeFragment())
+                }
+               1 ->{
+                    attachFragment(PlutecoderFragment())
+                }
+               2 ->{
+                    attachFragment(AboutFragment())
+                }
+               3 ->{
+                   attachFragment(ConnectFragment())
+               }
+            }
+
+        }
+
+
+        attachFragment(HomeFragment())
     }
+//
+    private fun attachFragment(fragment : Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container, fragment, "")
+            .commit()
 
-    private fun setUpWebView() {
-        webview!!.setBackgroundColor(Color.parseColor("#f1f1f1"));
-        webview!!.settings.builtInZoomControls = true
-        webview.setWebChromeClient(WebChromeClient())
-        webview.getSettings().setAllowFileAccess(true)
-        webview.getSettings().setPluginState(WebSettings.PluginState.ON)
-        webview.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND)
-        webview.setWebViewClient(WebViewClient())
-        webview.getSettings().setJavaScriptEnabled(true)
-        webview.getSettings().setLoadWithOverviewMode(true)
-        webview.getSettings().setUseWideViewPort(true)
-        webview.getSettings().setDisplayZoomControls(false);
-
-        val display = windowManager.defaultDisplay
-        val width = display.width
-
-        // Enable support for zooming and scaling
-        webview.settings.setSupportZoom(true)
-        webview.settings.builtInZoomControls = true
-        webview.settings.displayZoomControls = false
-
-        // Set the viewport to fit the screen automatically
-        webview.settings.loadWithOverviewMode = true
-        webview.settings.useWideViewPort = true
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        handler.removeCallbacksAndMessages(null) // Clean up the handler
     }
 
 }

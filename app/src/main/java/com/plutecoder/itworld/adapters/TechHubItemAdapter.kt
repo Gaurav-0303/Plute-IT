@@ -67,7 +67,7 @@ class TechHubItemAdapter(private val context: Context, private var itemList: Arr
         viewType: Int
     ): TechHubItemAdapter.OfferHolder {
         return OfferHolder(
-            LayoutInflater.from(context).inflate(R.layout.individual_other_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.individual_tech_hub_item, parent, false)
         )
     }
 

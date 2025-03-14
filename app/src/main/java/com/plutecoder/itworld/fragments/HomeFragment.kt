@@ -10,15 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.plutecoder.itworld.R
-import com.plutecoder.itworld.adapters.MainGridAdapter
+import com.plutecoder.itworld.adapters.CategoryAdapter
 import com.plutecoder.itworld.databinding.HomeFragmentBinding
 import com.plutecoder.itworld.models.Category
-import com.plutecoder.itworld.viewModels.HomeViewModel
+import com.plutecoder.itworld.viewModels.CategoryViewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var adapter: MainGridAdapter
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var adapter: CategoryAdapter
+    private lateinit var viewModel: CategoryViewModel
     private lateinit var binding: HomeFragmentBinding
     private lateinit var progressBar: ProgressDialog
 
@@ -45,11 +45,11 @@ class HomeFragment : Fragment() {
         }
 
         // Initialize ViewModel
-        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        viewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
 
         // Initialize RecyclerView
         binding.gridRv.layoutManager = GridLayoutManager(requireContext(), 2)
-        adapter = MainGridAdapter(requireContext(), emptyList())
+        adapter = CategoryAdapter(requireContext(), emptyList())
         binding.gridRv.adapter = adapter
 
         // Observe ViewModel
@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun updateRecyclerView(categories: List<Category>) {
-        adapter = MainGridAdapter(requireContext(), categories)
+        adapter = CategoryAdapter(requireContext(), categories)
         binding.gridRv.adapter = adapter
     }
 }

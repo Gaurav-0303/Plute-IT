@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.plutecoder.itworld.views.MainActivity
+import com.plutecoder.itworld.views.RoadmapActivity
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.views.isDarkModeEnabled
@@ -23,7 +23,7 @@ class CategoryItemGridAdapter(val context: Context, var itemList: ArrayList<Cate
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferHolder {
         return OfferHolder(
-            LayoutInflater.from(context).inflate(R.layout.techlist_row, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.individual_grid_item, parent, false)
         )
     }
 
@@ -40,7 +40,7 @@ class CategoryItemGridAdapter(val context: Context, var itemList: ArrayList<Cate
 
 
         holder.itemView.findViewById<soup.neumorphism.NeumorphCardView>(R.id.techcard).setOnClickListener {
-            val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent(context, RoadmapActivity::class.java)
             intent.putExtra("category_item", itemList[position])
             intent.putExtra("category_uid", categoryID)
             context.startActivity(intent)

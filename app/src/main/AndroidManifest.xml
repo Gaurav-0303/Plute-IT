@@ -23,7 +23,7 @@
             android:theme="@style/ItemBg"
             android:exported="false" />
         <activity
-            android:name=".views.BottomBarActivity"
+            android:name=".views.MainActivity"
             android:theme="@style/ItemBg"
             android:exported="true">
             <intent-filter>
@@ -38,7 +38,7 @@
         <activity android:name=".views.TechnologiesActivity"
             android:theme="@style/ItemBg"
             />
-        <activity android:name=".views.MainActivity"
+        <activity android:name=".views.RoadmapActivity"
             android:theme="@style/ItemBg"
             />
 

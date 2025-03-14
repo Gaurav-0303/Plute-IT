@@ -6,21 +6,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.plutecoder.itworld.adapters.CategoryItemListAdapter
-import com.plutecoder.itworld.databinding.LanguageScreenBinding
+import com.plutecoder.itworld.databinding.CategoryItemListBinding
 import com.plutecoder.itworld.models.Category
 import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.viewModels.CategoryItemsViewModel
 
 class LanguageActivity : AppCompatActivity() {
 
-    private lateinit var binding : LanguageScreenBinding
+    private lateinit var binding : CategoryItemListBinding
     private lateinit var categoryItemListAdapter: CategoryItemListAdapter
     private lateinit var progressBar: ProgressDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = LanguageScreenBinding.inflate(layoutInflater)
+        binding = CategoryItemListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //initialize progress bar

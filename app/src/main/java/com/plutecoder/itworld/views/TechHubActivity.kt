@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.plutecoder.itworld.adapters.TechHubItemAdapter
-import com.plutecoder.itworld.databinding.ActivityOthersBinding
+import com.plutecoder.itworld.databinding.ActivityTechHubBinding
 import com.plutecoder.itworld.models.Category
 import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.viewModels.CategoryItemsViewModel
@@ -14,13 +14,13 @@ import com.plutecoder.itworld.viewModels.CategoryItemsViewModel
 class TechHubActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CategoryItemsViewModel
-    private lateinit var binding : ActivityOthersBinding
+    private lateinit var binding : ActivityTechHubBinding
     private lateinit var techHubItemAdapter: TechHubItemAdapter
     private lateinit var progressBar: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityOthersBinding.inflate(layoutInflater)
+        binding = ActivityTechHubBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //initialize progress bar

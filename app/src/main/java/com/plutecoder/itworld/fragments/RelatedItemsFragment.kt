@@ -1,7 +1,6 @@
 package com.plutecoder.itworld.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,16 +8,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.plutecoder.itworld.adapters.BottomSheetFrameworkAdapter
-import com.plutecoder.itworld.databinding.FragmentBottomSheetBinding
+import com.plutecoder.itworld.adapters.RelatedItemsAdapter
+import com.plutecoder.itworld.databinding.FragmentRelatedItemsBinding
 import com.plutecoder.itworld.models.CategoryItem
-import com.plutecoder.itworld.models.Uses
 import com.plutecoder.itworld.viewModels.RelatedItemsViewModel
 
-class BottomSheetFragment(var categoryUid: String, var categoryItemUid: String) : BottomSheetDialogFragment() {
+class RelatedItemsFragment(var categoryUid: String, var categoryItemUid: String) : BottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentBottomSheetBinding
-    private lateinit var myAdapter: BottomSheetFrameworkAdapter
+    private lateinit var binding: FragmentRelatedItemsBinding
+    private lateinit var myAdapter: RelatedItemsAdapter
     private lateinit var itemList: ArrayList<CategoryItem>
     private lateinit var viewModel: RelatedItemsViewModel
 
@@ -26,7 +24,7 @@ class BottomSheetFragment(var categoryUid: String, var categoryItemUid: String) 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBottomSheetBinding.inflate(inflater, container, false)
+        binding = FragmentRelatedItemsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -53,7 +51,7 @@ class BottomSheetFragment(var categoryUid: String, var categoryItemUid: String) 
 
     private fun setUpRecyclerView() {
         binding.bottomSheetRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        myAdapter = BottomSheetFrameworkAdapter(requireContext(), itemList)
+        myAdapter = RelatedItemsAdapter(requireContext(), itemList)
         binding.bottomSheetRv.adapter = myAdapter
     }
 }

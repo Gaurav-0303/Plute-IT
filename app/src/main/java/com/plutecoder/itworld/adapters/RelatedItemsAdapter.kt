@@ -1,24 +1,20 @@
 package com.plutecoder.itworld.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.plutecoder.itworld.adapters.MainGridAdapter.ViewHolder
-import com.plutecoder.itworld.databinding.IndividualFrameworkBinding
-import com.plutecoder.itworld.databinding.MainGridItemBinding
+import com.plutecoder.itworld.databinding.IndividualRelatedItemBinding
 import com.plutecoder.itworld.models.CategoryItem
-import com.plutecoder.itworld.models.Uses
 
-class BottomSheetFrameworkAdapter(val context : Context, val itemList : ArrayList<CategoryItem>) : RecyclerView.Adapter<BottomSheetFrameworkAdapter.MyViewHolder>() {
+class RelatedItemsAdapter(val context : Context, val itemList : ArrayList<CategoryItem>) : RecyclerView.Adapter<RelatedItemsAdapter.MyViewHolder>() {
 
-    inner class MyViewHolder(val binding : IndividualFrameworkBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class MyViewHolder(val binding : IndividualRelatedItemBinding) : RecyclerView.ViewHolder(binding.root){
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = IndividualFrameworkBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = IndividualRelatedItemBinding.inflate(LayoutInflater.from(context), parent, false)
         return MyViewHolder(binding)
     }
 

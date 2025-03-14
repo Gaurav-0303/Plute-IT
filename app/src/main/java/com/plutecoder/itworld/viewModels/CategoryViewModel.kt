@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.database.*
 import com.plutecoder.itworld.models.Category
 
-class HomeViewModel : ViewModel() {
+class CategoryViewModel : ViewModel() {
 
     private val database: DatabaseReference = FirebaseDatabase.getInstance().getReference("categories")
 

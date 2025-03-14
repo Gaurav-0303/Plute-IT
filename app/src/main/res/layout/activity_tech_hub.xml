@@ -9,7 +9,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/others_rv"
-        tools:listitem="@layout/individual_other_item"
+        tools:listitem="@layout/individual_tech_hub_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

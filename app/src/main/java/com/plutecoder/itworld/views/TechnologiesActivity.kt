@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.plutecoder.itworld.adapters.CategoryItemGridAdapter
-import com.plutecoder.itworld.databinding.TechnologiesListBinding
+import com.plutecoder.itworld.databinding.CategoryItemGridBinding
 import com.plutecoder.itworld.models.Category
 import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.viewModels.CategoryItemsViewModel
@@ -16,13 +16,13 @@ class TechnologiesActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CategoryItemsViewModel
     private lateinit var categoryItemGridAdapter: CategoryItemGridAdapter
-    private lateinit var binding: TechnologiesListBinding
+    private lateinit var binding: CategoryItemGridBinding
     private lateinit var progressBar: ProgressDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = TechnologiesListBinding.inflate(layoutInflater)
+        binding = CategoryItemGridBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //initialize progress bar
