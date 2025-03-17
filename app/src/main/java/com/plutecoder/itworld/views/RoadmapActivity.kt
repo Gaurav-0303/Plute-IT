@@ -40,6 +40,9 @@ class RoadmapActivity : AppCompatActivity() {
         //show data in top bar
         binding.header.title.text = categoryItem.name
 
+        //for going back
+        binding.header.backImageView.setOnClickListener { onBackPressed() }
+
         setUpWebView()
 
         var imgurl= "<img src='${categoryItem.basicRoadmap}' width='100%' height='100%'/>"

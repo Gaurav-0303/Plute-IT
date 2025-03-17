@@ -11,14 +11,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.adapters.CategoryAdapter
-import com.plutecoder.itworld.databinding.HomeFragmentBinding
+import com.plutecoder.itworld.databinding.FragmentHomeBinding
 import com.plutecoder.itworld.models.Category
 import com.plutecoder.itworld.viewModels.CategoryViewModel
 
 class HomeFragment : Fragment() {
 
     private lateinit var adapter: CategoryAdapter
-    private lateinit var binding: HomeFragmentBinding
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
         val contextThemeWrapper = ContextThemeWrapper(requireActivity(), R.style.ItemBg)
         val themedInflater = inflater.cloneInContext(contextThemeWrapper)
 
-        binding = HomeFragmentBinding.inflate(themedInflater, container, false)
+        binding = FragmentHomeBinding.inflate(themedInflater, container, false)
 
         return binding.root
     }
@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
 
         // Initialize RecyclerView
         binding.gridRv.layoutManager = GridLayoutManager(requireContext(), 2)
-        adapter = CategoryAdapter(requireContext(), emptyList())
+        adapter = CategoryAdapter(requireContext(), emptyList(), true)
         binding.gridRv.adapter = adapter
 
         // Observe ViewModel
@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun updateRecyclerView(categories: List<Category>) {
-        adapter = CategoryAdapter(requireContext(), categories)
+        adapter = CategoryAdapter(requireContext(), categories,true)
         binding.gridRv.adapter = adapter
     }
 }

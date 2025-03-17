@@ -7,6 +7,7 @@ import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.models.Uses
 
@@ -26,6 +27,11 @@ fun Context.showUsesDialog(uses: Uses) {
 
     btnClose.setOnClickListener {
         dialog.dismiss()
+    }
+
+    if (isDarkModeEnabled(this)) {
+        view.findViewById<soup.neumorphism.NeumorphCardView>(R.id.dialog_uses_card).setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
+        view.findViewById<soup.neumorphism.NeumorphCardView>(R.id.dialog_uses_card).setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
     }
 
     dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)

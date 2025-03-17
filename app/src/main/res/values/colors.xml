@@ -144,6 +144,7 @@
     <color name="headingColor">#262626</color>
     <color name="TextColor"> #232323</color>
     <color name="SubTitleColor">#646464</color>
+    <color name="pluteblueSubtitle">#555D60</color>
 
     <color name="linkcolor">#3c65a8</color>
     <color name="drawbleselect">#bbdefb</color>

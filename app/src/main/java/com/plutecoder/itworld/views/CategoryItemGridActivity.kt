@@ -12,7 +12,7 @@ import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.viewModels.CategoryItemsViewModel
 
 
-class TechnologiesActivity : AppCompatActivity() {
+class CategoryItemGridActivity : AppCompatActivity() {
 
     private lateinit var categoryItemGridAdapter: CategoryItemGridAdapter
     private lateinit var binding: CategoryItemGridBinding
@@ -43,6 +43,9 @@ class TechnologiesActivity : AppCompatActivity() {
         //fill title bar
         binding.header.title.text = category.title
         binding.description.text = category.subtitle
+
+        //for going back
+        binding.header.backImageView.setOnClickListener { onBackPressed() }
 
         // Observe the data from ViewModel
         viewModel.categoryItems.observe(this) { items ->

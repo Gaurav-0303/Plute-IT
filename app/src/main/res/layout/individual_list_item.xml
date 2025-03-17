@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/appbackcolor1"
     android:layout_height="wrap_content">
     <soup.neumorphism.NeumorphCardView
         android:id="@+id/row_click"
@@ -25,6 +26,7 @@ android:minHeight="100dp"
         android:src="@drawable/icons8_kotlin"></ImageView>
 
     <TextView
+        android:textColor="@color/pluteblue"
         android:id="@+id/txtlangname"
         style="@style/ItemTextBg"
         android:layout_width="wrap_content"
@@ -51,7 +53,7 @@ android:maxLines="3"
         android:ellipsize="end"
         android:gravity="start"
         android:text=": An officially supported language for Android app development. Latest major version: Kotlin 1.5. Widely used as an alternative to Java for Android development, offering concise syntax and improved safety features."
-        android:textColor="#555D60"
+        android:textColor="@color/pluteblueSubtitle"
         android:textSize="12sp" />
 
     <com.google.android.material.chip.ChipGroup

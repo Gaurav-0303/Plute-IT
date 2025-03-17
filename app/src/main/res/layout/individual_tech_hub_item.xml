@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/appbackcolor1"
     android:layout_height="wrap_content"
     >
 
@@ -22,6 +23,7 @@
             android:layout_margin="15dp">
 
             <TextView
+                android:textColor="@color/pluteblue"
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,7 +48,7 @@
                 android:fontFamily="@font/rubikregular"
                 android:gravity="start"
                 android:maxLines="3"
-                android:textColor="#555D60"
+                android:textColor="@color/pluteblueSubtitle"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/featureChips"
                 app:layout_constraintStart_toStartOf="parent"

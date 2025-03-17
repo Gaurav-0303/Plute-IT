@@ -34,7 +34,7 @@
                 app:indicatorColor="@color/pluteblue"
                 app:itemFontFamily="@font/nunitosansregular"
                 app:menu="@menu/bottom_menu"
-                style="@style/SmoothBottomBar"
+                app:backgroundColor="@color/appbackcolor1"
                 app:textColor="@color/pluteyellow"
                 app:textSize="11sp" />
         </RelativeLayout>

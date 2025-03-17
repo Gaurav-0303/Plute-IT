@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.plutecoder.itworld.R
 import com.plutecoder.itworld.adapters.RelatedItemsAdapter
 import com.plutecoder.itworld.databinding.FragmentRelatedItemsBinding
 import com.plutecoder.itworld.models.CategoryItem
@@ -32,7 +34,7 @@ class RelatedItemsFragment(private var categoryItemUid: String) : BottomSheetDia
 
         val viewModel = ViewModelProvider(this)[RelatedItemsViewModel::class.java]
 
-        (view.parent as View).setBackgroundColor(resources.getColor(android.R.color.transparent))
+//        (view.parent as View).setBackgroundColor(resources.getColor(android.R.color.transparent))
 
         itemList = ArrayList()
         setUpRecyclerView()
@@ -46,6 +48,7 @@ class RelatedItemsFragment(private var categoryItemUid: String) : BottomSheetDia
         })
 
         viewModel.fetchRelatedItems(categoryItemUid)
+
     }
 
     private fun setUpRecyclerView() {
@@ -53,4 +56,10 @@ class RelatedItemsFragment(private var categoryItemUid: String) : BottomSheetDia
         myAdapter = RelatedItemsAdapter(requireContext(), itemList)
         binding.bottomSheetRv.adapter = myAdapter
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
+    }
+
 }

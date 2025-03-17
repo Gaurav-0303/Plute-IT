@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/appbackcolor1"
     android:layout_height="match_parent">
 
     <include
@@ -15,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
+        android:textColor="@color/pluteblue"
         android:fontFamily="@font/nunitosanslight"
         android:text="PluteIt by Plutecoder: Your Guide to Tech Language Roadmaps"
         android:textSize="16sp"

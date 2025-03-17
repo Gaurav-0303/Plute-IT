@@ -10,13 +10,13 @@ import com.bumptech.glide.Glide
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.databinding.IndividualCategoryBinding
 import com.plutecoder.itworld.models.Category
-import com.plutecoder.itworld.views.LanguageActivity
+import com.plutecoder.itworld.views.CategoryItemListActivity
 import com.plutecoder.itworld.views.TechHubActivity
-import com.plutecoder.itworld.views.TechnologiesActivity
+import com.plutecoder.itworld.views.CategoryItemGridActivity
 import com.plutecoder.itworld.views.isDarkModeEnabled
 
 
-class CategoryAdapter(private val context : Context, private val items: List<Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter(private val context: Context, private val items: List<Category>, b: Boolean) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     class ViewHolder(var binding : IndividualCategoryBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -38,8 +38,8 @@ class CategoryAdapter(private val context : Context, private val items: List<Cat
         // Handle item click
         binding.languageCard.setOnClickListener {
             val targetActivity = when (items[position].uiType) {
-                "LIST" -> LanguageActivity::class.java
-                "GRID" -> TechnologiesActivity::class.java
+                "LIST" -> CategoryItemListActivity::class.java
+                "GRID" -> CategoryItemGridActivity::class.java
                 "POST" -> TechHubActivity::class.java
                 else -> null
             }

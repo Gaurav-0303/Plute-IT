@@ -2,9 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/appbackcolor1"
     android:layout_height="match_parent">
 
     <TextView
+        android:textColor="@color/pluteblue"
         android:id="@+id/titleh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleh"
         android:layout_marginStart="15dp"
+        android:textColor="@color/pluteblue"
         android:fontFamily="@font/nunitosanslight"
         android:text="PluteIt by Plutecoder: Your Guide to Tech Language Roadmaps"
         android:textSize="16sp" />

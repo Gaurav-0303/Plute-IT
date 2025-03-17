@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/appbackcolor1"
     android:layout_columnWeight="1">
 
     <soup.neumorphism.NeumorphCardView
@@ -14,7 +14,6 @@
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
         android:layout_weight="0.1"
-        app:neumorph_shapeType="flat"
         android:clickable="true">
 
         <RelativeLayout
@@ -36,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/subtitle"
                 android:layout_centerInParent="true"
+                android:textColor="@color/pluteblue"
                 android:fontFamily="@font/rubiksemibold"
                 android:textSize="16sp"
                 tools:text="Languages" />
@@ -51,6 +51,7 @@
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="5dp"
                 android:ellipsize="end"
+                android:textColor="@color/pluteblueSubtitle"
                 android:fontFamily="@font/rubikregular"
                 android:gravity="center"
                 android:maxLines="2"

@@ -6,12 +6,6 @@
         <item name="colorAccent">@color/green</item>
     </style>
 
-    <style name="MakeItDark" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
-        <item name="backgroundTint">@color/black</item>
-        <item name="background">@color/black</item>
-        <item name="backgroundColor">@color/black</item>
-    </style>
-
     <style name="ItemBg" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/backgroundDark</item>
         <item name="colorPrimary">@color/backgroundDark</item>
@@ -27,6 +21,15 @@
     <style name="SmoothBottomBar">
         <item name="backgroundColor">@color/backgroundDark</item>
     </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyleDark</item>
+    </style>
+
+    <style name="CustomBottomSheetStyleDark" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 
 
 </resources>
