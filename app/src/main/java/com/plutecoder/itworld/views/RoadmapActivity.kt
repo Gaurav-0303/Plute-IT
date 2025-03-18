@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -43,10 +45,10 @@ class RoadmapActivity : AppCompatActivity() {
         //for going back
         binding.header.backImageView.setOnClickListener { onBackPressed() }
 
-        setUpWebView()
+        setUpWebView(categoryItem)
 
-        var imgurl= "<img src='${categoryItem.basicRoadmap}' width='100%' height='100%'/>"
-        webview.loadData(imgurl, "text/html", "UTF-8")
+//        var imgurl= "<img src='${categoryItem.basicRoadmap}' width='100%' height='100%'/>"
+//        webview.loadData(imgurl, "text/html", "UTF-8")
 
         if (isDarkModeEnabled(this)) {
             binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
@@ -54,8 +56,31 @@ class RoadmapActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpWebView() {
-        webview!!.setBackgroundColor(Color.parseColor("#f1f1f1"));
+    private fun showRoadmap(categoryItem: CategoryItem) {
+        val imgHtml = """
+        <html>
+        <head>
+          <style>
+            img{
+                padding : 60px;
+            }
+          </style>  
+        </head>
+        <body>
+            <div class="image-container">
+                <img src='${categoryItem.basicRoadmap}' width='100%' height='100%'/>
+            </div>
+        </body>
+        </html>
+    """.trimIndent()
+
+        webview.loadData(imgHtml, "text/html", "UTF-8")
+    }
+
+
+
+    private fun setUpWebView(categoryItem: CategoryItem) {
+        webview!!.setBackgroundColor(ContextCompat.getColor(this, R.color.appbackcolor1));
         webview!!.settings.builtInZoomControls = true
         webview.setWebChromeClient(WebChromeClient())
         webview.getSettings().setAllowFileAccess(true)
@@ -67,6 +92,7 @@ class RoadmapActivity : AppCompatActivity() {
         webview.getSettings().setUseWideViewPort(true)
         webview.getSettings().setDisplayZoomControls(false);
 
+
         val display = windowManager.defaultDisplay
 
         // Enable support for zooming and scaling
@@ -77,6 +103,9 @@ class RoadmapActivity : AppCompatActivity() {
         // Set the viewport to fit the screen automatically
         webview.settings.loadWithOverviewMode = true
         webview.settings.useWideViewPort = true
+
+        //showing image in web view
+        showRoadmap(categoryItem)
     }
 
 
