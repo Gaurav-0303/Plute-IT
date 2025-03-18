@@ -4,9 +4,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.view.View
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -21,8 +20,8 @@ import com.plutecoder.itworld.fragments.RelatedItemsFragment
 class RoadmapActivity : AppCompatActivity() {
 
     private val handler = Handler(Looper.getMainLooper())
-    private lateinit var binding : ActivityRoadmapBinding
-    private lateinit var webview : WebView
+    private lateinit var binding: ActivityRoadmapBinding
+    private lateinit var webview: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,22 +32,19 @@ class RoadmapActivity : AppCompatActivity() {
 
         val categoryItem = intent.getSerializableExtra("category_item") as CategoryItem
 
-        //bottom sheet opening
+        // Bottom sheet opening
         findViewById<ImageView>(R.id.open_framework).setOnClickListener {
             val relatedItemsFragment = RelatedItemsFragment(categoryItem.uid!!)
             relatedItemsFragment.show(supportFragmentManager, relatedItemsFragment.tag)
         }
 
-        //show data in top bar
+        // Show data in top bar
         binding.header.title.text = categoryItem.name
 
-        //for going back
+        // Go back
         binding.header.backImageView.setOnClickListener { onBackPressed() }
 
         setUpWebView(categoryItem)
-
-//        var imgurl= "<img src='${categoryItem.basicRoadmap}' width='100%' height='100%'/>"
-//        webview.loadData(imgurl, "text/html", "UTF-8")
 
         if (isDarkModeEnabled(this)) {
             binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
@@ -61,8 +57,8 @@ class RoadmapActivity : AppCompatActivity() {
         <html>
         <head>
           <style>
-            img{
-                padding : 60px;
+            img {
+                padding: 60px;
             }
           </style>  
         </head>
@@ -74,37 +70,40 @@ class RoadmapActivity : AppCompatActivity() {
         </html>
     """.trimIndent()
 
-        webview.loadData(imgHtml, "text/html", "UTF-8")
+        webview.loadDataWithBaseURL(null, imgHtml, "text/html", "UTF-8", null)
     }
 
-
-
     private fun setUpWebView(categoryItem: CategoryItem) {
-        webview!!.setBackgroundColor(ContextCompat.getColor(this, R.color.appbackcolor1));
-        webview!!.settings.builtInZoomControls = true
-        webview.setWebChromeClient(WebChromeClient())
-        webview.getSettings().setAllowFileAccess(true)
-        webview.getSettings().setPluginState(WebSettings.PluginState.ON)
-        webview.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND)
-        webview.setWebViewClient(WebViewClient())
-        webview.getSettings().setJavaScriptEnabled(true)
-        webview.getSettings().setLoadWithOverviewMode(true)
-        webview.getSettings().setUseWideViewPort(true)
-        webview.getSettings().setDisplayZoomControls(false);
+        webview.setBackgroundColor(ContextCompat.getColor(this, R.color.appbackcolor1))
+        webview.settings.apply {
+            builtInZoomControls = true
+            displayZoomControls = false
+            javaScriptEnabled = true
+            loadWithOverviewMode = true
+            useWideViewPort = true
+            allowFileAccess = true
+            domStorageEnabled = true  // Enable DOM storage
+            databaseEnabled = true    // Enable database storage
+            cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK // Use cache first, then network
+        }
 
+        webview.webViewClient = object : WebViewClient() {
+            override fun shouldInterceptRequest(view: WebView?, url: String?): WebResourceResponse? {
+                // Use cache for images
+                if (url?.endsWith(".png") == true || url?.endsWith(".jpg") == true || url?.endsWith(".jpeg") == true) {
+                    return super.shouldInterceptRequest(view, url)
+                }
+                return super.shouldInterceptRequest(view, url)
+            }
 
-        val display = windowManager.defaultDisplay
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                webview.settings.cacheMode = WebSettings.LOAD_DEFAULT
+            }
+        }
 
-        // Enable support for zooming and scaling
-        webview.settings.setSupportZoom(true)
-        webview.settings.builtInZoomControls = true
-        webview.settings.displayZoomControls = false
+        webview.webChromeClient = WebChromeClient()
 
-        // Set the viewport to fit the screen automatically
-        webview.settings.loadWithOverviewMode = true
-        webview.settings.useWideViewPort = true
-
-        //showing image in web view
         showRoadmap(categoryItem)
     }
 
@@ -113,5 +112,4 @@ class RoadmapActivity : AppCompatActivity() {
         super.onDestroy()
         handler.removeCallbacksAndMessages(null) // Clean up the handler
     }
-
 }

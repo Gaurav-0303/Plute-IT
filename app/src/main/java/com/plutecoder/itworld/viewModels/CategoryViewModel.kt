@@ -24,6 +24,9 @@ class CategoryViewModel : ViewModel() {
     private fun fetchCategories() {
         _isLoading.value = true
 
+        // Enable local caching
+        database.keepSynced(true)
+
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val tempList = ArrayList<Category>()

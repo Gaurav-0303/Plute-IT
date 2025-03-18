@@ -21,6 +21,9 @@ class RelatedItemsViewModel : ViewModel() {
         _isLoading.value = true
         val relatedItemUids = mutableSetOf<String>()
 
+        // Enable local caching
+        database.keepSynced(true)
+
         // Step 1: Fetch related item UIDs
         database.child("items").child(itemUid).child("relatedItemsByCategory")
             .addListenerForSingleValueEvent(object : ValueEventListener {

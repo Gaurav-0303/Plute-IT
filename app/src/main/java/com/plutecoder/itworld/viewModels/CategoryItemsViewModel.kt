@@ -23,6 +23,9 @@ class CategoryItemsViewModel : ViewModel() {
     fun fetchCategoryItems(context: Context, categoryUid: String) {
         _isLoading.value = true
 
+        // Enable local caching
+        database.keepSynced(true)
+
         // Querying items where categoryUid matches the given categoryUid
         database.orderByChild("categoryUid").equalTo(categoryUid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
