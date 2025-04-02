@@ -1,9 +1,11 @@
 package com.plutecoder.itworld
 
 import android.app.Application
+import android.util.Log
 import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MyApplication : Application() {
     override fun onCreate() {
@@ -17,5 +19,13 @@ class MyApplication : Application() {
 
         // Enable Crashlytics crash reporting
         FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = true
+
+        //notification
+        FirebaseMessaging.getInstance().subscribeToTopic("pluteit-updates")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("Notification", "Subscribed to topic: pluteit-updates")
+                }
+            }
     }
 }
