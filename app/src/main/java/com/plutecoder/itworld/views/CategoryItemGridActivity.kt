@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.plutecoder.itworld.R
 import com.plutecoder.itworld.adapters.CategoryItemGridAdapter
 import com.plutecoder.itworld.databinding.CategoryItemGridBinding
 import com.plutecoder.itworld.models.Category
@@ -36,7 +37,7 @@ class CategoryItemGridActivity : AppCompatActivity() {
         val category = intent.getSerializableExtra("category") as Category
 
         // Initialize the adapter
-        binding.techrecycler.layoutManager = GridLayoutManager(this, 2)
+        binding.techrecycler.layoutManager = GridLayoutManager(this, resources.getInteger(R.integer.grid_span_count))
         categoryItemGridAdapter = CategoryItemGridAdapter(this, ArrayList(), category.uid)
         binding.techrecycler.adapter = categoryItemGridAdapter
 

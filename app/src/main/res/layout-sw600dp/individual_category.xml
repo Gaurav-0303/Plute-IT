@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/appbackcolor1"
+    android:layout_columnWeight="1">
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/language_card"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.1"
+        android:clickable="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="14dp"
+                android:scaleType="centerCrop"
+                tools:background="@drawable/programing" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/subtitle"
+                android:layout_centerInParent="true"
+                android:textColor="@color/pluteblue"
+                android:fontFamily="@font/rubiksemibold"
+                android:textSize="20sp"
+                tools:text="Languages" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:textColor="@color/pluteblueSubtitle"
+                android:fontFamily="@font/rubikregular"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textSize="14sp"
+                tools:text="languages and frameworks, some more data that exceeds two lines" />
+
+        </RelativeLayout>
+    </soup.neumorphism.NeumorphCardView>
+</LinearLayout>

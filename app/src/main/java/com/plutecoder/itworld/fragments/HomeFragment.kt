@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
         val viewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
 
         // Initialize RecyclerView
-        binding.gridRv.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.gridRv.layoutManager = GridLayoutManager(requireContext(), resources.getInteger(R.integer.grid_span_count))
         adapter = CategoryAdapter(requireContext(), emptyList(), true)
         binding.gridRv.adapter = adapter
 

@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
-
     <supports-screens
         android:smallScreens="true"
         android:normalScreens="true"
@@ -27,30 +26,35 @@
         <activity
             android:name=".views.DetailedTechHubActivity"
             android:theme="@style/ItemBg"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.TechHubActivity"
             android:theme="@style/ItemBg"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.MainActivity"
             android:theme="@style/ItemBg"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.CategoryItemListActivity"
+        <activity
+            android:name=".views.CategoryItemListActivity"
             android:theme="@style/ItemBg"
-            />
-        <activity android:name=".views.CategoryItemGridActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.CategoryItemGridActivity"
             android:theme="@style/ItemBg"
-            />
-        <activity android:name=".views.RoadmapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.RoadmapActivity"
             android:theme="@style/ItemBg"
-            />
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".Notification.FirebaseMessagingService"

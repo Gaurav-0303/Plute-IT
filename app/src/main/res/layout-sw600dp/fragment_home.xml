@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/appbackcolor1"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:textColor="@color/pluteblue"
+        android:id="@+id/titleh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/nunitosansregular"
+        android:text="Welcome \nPlutecoder"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/titlehcontent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleh"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/pluteblue"
+        android:fontFamily="@font/nunitosanslight"
+        android:text="PluteIt by Plutecoder: Your Guide to Tech Language Roadmaps"
+        android:textSize="20sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/grid_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titlehcontent"
+        android:layout_marginTop="36dp"
+        tools:listitem="@layout/individual_category" />
+
+</RelativeLayout>

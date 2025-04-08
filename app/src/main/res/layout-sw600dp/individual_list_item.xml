@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/appbackcolor1"
+    android:layout_height="wrap_content">
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/row_click"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="140dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/langimg"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/icons8_kotlin" />
+
+            <TextView
+                android:textColor="@color/pluteblue"
+                android:id="@+id/txtlangname"
+                style="@style/ItemTextBg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:layout_toRightOf="@+id/langimg"
+                android:fontFamily="@font/rubiksemibold"
+                android:text="Kotlin"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/txtlangdesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/rubikregular"
+                android:layout_below="@+id/txtlangname"
+                android:layout_toRightOf="@+id/langimg"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:text=": An officially supported language for Android app development. Latest major version: Kotlin 1.5. Widely used as an alternative to Java for Android development, offering concise syntax and improved safety features."
+                android:textColor="@color/pluteblueSubtitle"
+                android:textSize="18sp" />
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_toRightOf="@+id/langimg"
+                android:layout_below="@+id/txtlangdesc"
+                android:layout_marginEnd="12dp"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:fillViewport="true">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/featureChips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:theme="@style/Theme.MaterialComponents.Bridge"/>
+
+            </HorizontalScrollView>
+
+        </RelativeLayout>
+
+    </soup.neumorphism.NeumorphCardView>
+
+</RelativeLayout>
