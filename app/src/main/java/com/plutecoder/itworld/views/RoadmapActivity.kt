@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
@@ -22,6 +23,7 @@ class RoadmapActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var binding: ActivityRoadmapBinding
     private lateinit var webview: WebView
+    private var isRoadmapLoaded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,34 +84,47 @@ class RoadmapActivity : AppCompatActivity() {
             loadWithOverviewMode = true
             useWideViewPort = true
             allowFileAccess = true
-            domStorageEnabled = true  // Enable DOM storage
-            databaseEnabled = true    // Enable database storage
-            cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK // Use cache first, then network
+            domStorageEnabled = true
+            databaseEnabled = true
+            cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
         }
 
-        webview.webViewClient = object : WebViewClient() {
-            override fun shouldInterceptRequest(view: WebView?, url: String?): WebResourceResponse? {
-                // Use cache for images
-                if (url?.endsWith(".png") == true || url?.endsWith(".jpg") == true || url?.endsWith(".jpeg") == true) {
-                    return super.shouldInterceptRequest(view, url)
-                }
-                return super.shouldInterceptRequest(view, url)
-            }
+        webview.addJavascriptInterface(WebAppInterface(isDarkModeEnabled(this)), "AndroidInterface")
 
+        webview.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                webview.settings.cacheMode = WebSettings.LOAD_DEFAULT
+
+                if (!isRoadmapLoaded) {
+                    isRoadmapLoaded = true
+
+                    handler.postDelayed({
+                        showRoadmap(categoryItem)
+                    }, 500)
+                }
             }
         }
 
         webview.webChromeClient = WebChromeClient()
 
-        showRoadmap(categoryItem)
+        // Load the loading screen first (from string or asset)
+        loadLoadingScreen()
     }
+
+    private fun loadLoadingScreen() {
+        webview.loadUrl("file:///android_asset/loading.html")
+    }
+
 
 
     override fun onDestroy() {
         super.onDestroy()
         handler.removeCallbacksAndMessages(null) // Clean up the handler
     }
+}
+
+// Add this interface
+class WebAppInterface(private val isDarkMode: Boolean) {
+    @JavascriptInterface
+    fun isDarkMode(): Boolean = isDarkMode
 }

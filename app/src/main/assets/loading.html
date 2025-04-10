@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Custom Loader with Text</title>
+    <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background: transparent; /* transparent background */
+          font-family: 'Segoe UI', sans-serif;
+        }
+
+        .loader {
+          position: relative;
+          transform: rotateZ(45deg);
+          perspective: 1000px;
+          border-radius: 50%;
+          width: 48px;
+          height: 48px;
+          color: #333459;
+        }
+
+        .loader:before,
+        .loader:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: inherit;
+          height: inherit;
+          border-radius: 50%;
+          transform: rotateX(70deg);
+          animation: 1s spin linear infinite;
+        }
+
+        .loader:after {
+          color: #FFD32E;
+          transform: rotateY(70deg);
+          animation-delay: .4s;
+        }
+
+        @keyframes spin {
+          0%, 100% {
+            box-shadow: .2em 0px 0 0px currentcolor;
+          }
+          12% {
+            box-shadow: .2em .2em 0 0 currentcolor;
+          }
+          25% {
+            box-shadow: 0 .2em 0 0px currentcolor;
+          }
+          37% {
+            box-shadow: -.2em .2em 0 0 currentcolor;
+          }
+          50% {
+            box-shadow: -.2em 0 0 0 currentcolor;
+          }
+          62% {
+            box-shadow: -.2em -.2em 0 0 currentcolor;
+          }
+          75% {
+            box-shadow: 0px -.2em 0 0 currentcolor;
+          }
+          87% {
+            box-shadow: .2em -.2em 0 0 currentcolor;
+          }
+        }
+
+        .loader-text {
+          margin-top: 12px;
+          color: #333459;
+          font-size: 16px;
+          font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+<div class="loader"></div>
+<div class="loader-text">Please wait...</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        try {
+            const isDark = AndroidInterface.isDarkMode(); // Kotlin will expose this method
+            if (isDark) {
+                document.querySelector(".loader-text").style.color = "#FFFFFF";
+                document.querySelector(".loader").style.color = "#FFFFFF";
+            } else {
+                document.querySelector(".loader-text").style.color = "#333459";
+                document.querySelector(".loader").style.color = "#333459";
+            }
+        } catch (e) {
+            console.log("AndroidInterface not available yet.");
+        }
+    });
+</script>
+
+</body>
+</html>

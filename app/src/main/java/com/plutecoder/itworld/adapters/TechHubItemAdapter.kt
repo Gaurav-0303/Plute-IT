@@ -3,11 +3,13 @@ package com.plutecoder.itworld.adapters
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.plutecoder.itworld.views.DetailedTechHubActivity
 import com.plutecoder.itworld.R
@@ -16,28 +18,50 @@ import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.views.isDarkModeEnabled
 import com.plutecoder.itworld.views.showUsesDialog
 
-class TechHubItemAdapter(private val context: Context, private var itemList: ArrayList<CategoryItem>) :
+class TechHubItemAdapter(
+    private val context: Context,
+    private var itemList: ArrayList<CategoryItem>
+) :
     RecyclerView.Adapter<TechHubItemAdapter.OfferHolder>() {
 
-    inner class OfferHolder(val binding: IndividualTechHubItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class OfferHolder(val binding: IndividualTechHubItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: TechHubItemAdapter.OfferHolder, position: Int) {
         val model = itemList[position]
         val binding = holder.binding
 
-        binding.title.setBackgroundColor(Color.parseColor("#f1f1f1"));
-        binding.title.text=model.name
-        binding.description.text=model.info
+        binding.title.setBackgroundColor(Color.parseColor("#f1f1f1"))
+        binding.title.text = model.name
+        binding.description.text = model.info
 
-        Glide.with(context)
-            .load(itemList[position].basicRoadmap)
-            .into(binding.image)
+        // Configure WebView
+        val webView = binding.image as WebView
+        webView.apply {
+            settings.javaScriptEnabled = true
+            settings.loadWithOverviewMode = true
+            settings.useWideViewPort = true
+            settings.domStorageEnabled = true
+            webViewClient = object : WebViewClient() {
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+                    // Adjust WebView height based on content
+//                    view?.evaluateJavascript(
+//                        "(function() { return document.body.scrollHeight; })();"
+//                    ) { height ->
+//                        val webViewHeight = height.toFloatOrNull()?.toInt() ?: 0
+//                        view?.layoutParams?.height = webViewHeight
+//                    }
+                }
+            }
+            loadUrl(itemList[position].basicRoadmap!!)
+        }
 
         if (!model.uses.isNullOrEmpty()) {
-            for (use in model.uses!!) {  // Iterate over the ArrayList<Uses>
+            for (use in model.uses!!) {
                 val chip: Chip = LayoutInflater.from(context)
                     .inflate(R.layout.chip_view_item, null, false) as Chip
-                chip.text = use.title  // Use the title property for the chip text
+                chip.text = use.title
 
                 chip.setOnClickListener {
                     context.showUsesDialog(use)
@@ -54,8 +78,18 @@ class TechHubItemAdapter(private val context: Context, private var itemList: Arr
         }
 
         if (isDarkModeEnabled(context)) {
-            binding.othersCard.setShadowColorLight(ContextCompat.getColor(context, R.color.neumorph_shadow_light))
-            binding.othersCard.setShadowColorDark(ContextCompat.getColor(context, R.color.neumorph_shadow_dark))
+            binding.othersCard.setShadowColorLight(
+                ContextCompat.getColor(
+                    context,
+                    R.color.neumorph_shadow_light
+                )
+            )
+            binding.othersCard.setShadowColorDark(
+                ContextCompat.getColor(
+                    context,
+                    R.color.neumorph_shadow_dark
+                )
+            )
         }
     }
 
@@ -63,7 +97,8 @@ class TechHubItemAdapter(private val context: Context, private var itemList: Arr
         parent: ViewGroup,
         viewType: Int
     ): TechHubItemAdapter.OfferHolder {
-        val binding = IndividualTechHubItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding =
+            IndividualTechHubItemBinding.inflate(LayoutInflater.from(context), parent, false)
         return OfferHolder(binding)
     }
 
@@ -75,5 +110,4 @@ class TechHubItemAdapter(private val context: Context, private var itemList: Arr
         itemList = newItems as ArrayList<CategoryItem>
         notifyDataSetChanged()
     }
-
 }
