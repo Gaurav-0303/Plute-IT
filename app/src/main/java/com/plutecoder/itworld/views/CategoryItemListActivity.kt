@@ -2,6 +2,7 @@ package com.plutecoder.itworld.views
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,13 +21,6 @@ class CategoryItemListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = CategoryItemListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //initialize progress bar
-        val progressBar = ProgressDialog(this).apply {
-            setMessage("Loading...")
-            setCancelable(false)
-            setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        }
 
         val viewModel: CategoryItemsViewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
 
@@ -52,9 +46,8 @@ class CategoryItemListActivity : AppCompatActivity() {
 
         // Observe loading state
         viewModel.isLoading.observe(this) { isLoading ->
-            if (isLoading) progressBar.show() else progressBar.hide()
+            binding.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
-
 
         // Fetch the category items
         viewModel.fetchCategoryItems(this, category.uid!!)

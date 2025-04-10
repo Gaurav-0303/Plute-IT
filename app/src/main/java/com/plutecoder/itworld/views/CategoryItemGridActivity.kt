@@ -2,6 +2,7 @@ package com.plutecoder.itworld.views
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,20 +18,11 @@ class CategoryItemGridActivity : AppCompatActivity() {
 
     private lateinit var categoryItemGridAdapter: CategoryItemGridAdapter
     private lateinit var binding: CategoryItemGridBinding
-    private lateinit var progressBar: ProgressDialog
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CategoryItemGridBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //initialize progress bar
-        progressBar = ProgressDialog(this).apply {
-            setMessage("Loading...")
-            setCancelable(false)
-            setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        }
 
         val viewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
 
@@ -55,7 +47,7 @@ class CategoryItemGridActivity : AppCompatActivity() {
 
         // Observe loading state
         viewModel.isLoading.observe(this) { isLoading ->
-            if (isLoading) progressBar.show() else progressBar.hide()
+            binding.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
         // Fetch the category items

@@ -2,6 +2,7 @@ package com.plutecoder.itworld.views
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,19 +16,11 @@ class TechHubActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityTechHubBinding
     private lateinit var techHubItemAdapter: TechHubItemAdapter
-    private lateinit var progressBar: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTechHubBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //initialize progress bar
-        progressBar = ProgressDialog(this).apply {
-            setMessage("Loading...")
-            setCancelable(false)
-            setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        }
 
         val viewModel = ViewModelProvider(this)[CategoryItemsViewModel::class.java]
 
@@ -46,7 +39,7 @@ class TechHubActivity : AppCompatActivity() {
 
         // Observe loading state
         viewModel.isLoading.observe(this) { isLoading ->
-            if (isLoading) progressBar.show() else progressBar.hide()
+            binding.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
         // Fetch the category items
