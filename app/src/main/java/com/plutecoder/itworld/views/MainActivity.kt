@@ -4,18 +4,25 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.databinding.ActivityMainBinding
 import com.plutecoder.itworld.fragments.AboutFragment
 import com.plutecoder.itworld.fragments.ConnectFragment
 import com.plutecoder.itworld.fragments.HomeFragment
 import com.plutecoder.itworld.fragments.PlutecoderFragment
+import com.plutecoder.itworld.viewModels.CategoryViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private var activeFragment: Fragment? = null
     private val LAST_SELECTED_FRAGMENT = null
+
+    companion object {
+        var categoryViewModel : CategoryViewModel? = null
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +33,9 @@ class MainActivity : AppCompatActivity() {
             binding.bottom.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
             binding.bottom.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
         }
+
+        //initialize category view model
+        categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
 
         // Restore the last selected fragment after recreation
         val lastFragmentTag = savedInstanceState?.getString(LAST_SELECTED_FRAGMENT) ?: "Home"

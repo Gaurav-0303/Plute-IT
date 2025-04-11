@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.*
 import com.plutecoder.itworld.models.CategoryItem
+import com.plutecoder.itworld.models.Uses
 
 class RelatedItemsViewModel : ViewModel() {
 
@@ -65,13 +66,40 @@ class RelatedItemsViewModel : ViewModel() {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (itemSnapshot in snapshot.children) {
                             Log.d("Gaurav", itemSnapshot.toString())
-                            val title = itemSnapshot.child("name").getValue(String::class.java)
-                            val description = itemSnapshot.child("info").getValue(String::class.java)
+                            val uid = itemSnapshot.key // item UID
+                            val categoryUid = itemSnapshot.child("categoryUid").getValue(String::class.java)
+                            val basicRoadmap = itemSnapshot.child("basicRoadmap").getValue(String::class.java)
+                            val info = itemSnapshot.child("info").getValue(String::class.java)
+                            val logo = itemSnapshot.child("logo").getValue(String::class.java)
+                            val name = itemSnapshot.child("name").getValue(String::class.java)
+                            val roadmaps = mutableListOf<String>()
+                            val uses = mutableListOf<Uses>()
 
-                            if (title != null && description != null) {
-                                val categoryItem = CategoryItem(title, description)
-                                relatedItems.add(categoryItem)
+                            itemSnapshot.child("uses").children.forEach {
+                                val title = it.child("title").getValue(String::class.java) ?: ""
+                                val description = it.child("description").getValue(String::class.java) ?: ""
+                                uses.add(Uses(title, description))
                             }
+
+                            itemSnapshot.child("roadmaps").children.forEach {
+                                val roadmapItem = it.getValue(String::class.java)
+                                if (roadmapItem != null) {
+                                    roadmaps.add(roadmapItem)
+                                }
+                            }
+
+                            relatedItems.add(
+                                CategoryItem(
+                                    uid = uid,
+                                    categoryUid = categoryUid,
+                                    basicRoadmap = basicRoadmap,
+                                    info = info,
+                                    logo = logo,
+                                    name = name,
+                                    roadmaps = ArrayList(roadmaps),
+                                    uses = ArrayList(uses)
+                                )
+                            )
                         }
 
                         completedRequests++

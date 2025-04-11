@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+    android:layout_height="wrap_content"
+    android:id="@+id/bottom_sheet_rv"
+    android:background="@color/appbackcolor1"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:listitem="@layout/individual_related_item_category"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/round_corner_white3"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bottom_sheet_rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"/>
-
-
-    </RelativeLayout>
-
-</RelativeLayout>
+</androidx.recyclerview.widget.RecyclerView>

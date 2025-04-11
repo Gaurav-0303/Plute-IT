@@ -10,30 +10,29 @@ import com.plutecoder.itworld.databinding.IndividualRelatedItemBinding
 import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.views.isDarkModeEnabled
 
-class RelatedItemsAdapter(val context : Context, val itemList : ArrayList<CategoryItem>) : RecyclerView.Adapter<RelatedItemsAdapter.MyViewHolder>() {
+class RelatedItemsAdapter(
+    private val context: Context,
+    private val items: List<CategoryItem>
+) : RecyclerView.Adapter<RelatedItemsAdapter.CardViewHolder>() {
 
-    inner class MyViewHolder(val binding : IndividualRelatedItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class CardViewHolder(val binding: IndividualRelatedItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val binding = IndividualRelatedItemBinding.inflate(LayoutInflater.from(context), parent, false)
-        return MyViewHolder(binding)
+        return CardViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return itemList.size
-    }
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-        val binding = holder.binding
-
-        binding.title.text = itemList[position].name
-        binding.description.text = itemList[position].info
+    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+        val item = items[position]
+        holder.binding.title.text = item.name
+        holder.binding.description.text = item.info
 
         if (isDarkModeEnabled(context)) {
-            binding.neuCard.setShadowColorLight( ContextCompat.getColor(context, R.color.neumorph_shadow_light))
-            binding.neuCard.setShadowColorDark( ContextCompat.getColor(context, R.color.neumorph_shadow_dark))
+            holder.binding.neuCard.setShadowColorLight( ContextCompat.getColor(context, R.color.neumorph_shadow_light))
+            holder.binding.neuCard.setShadowColorDark( ContextCompat.getColor(context, R.color.neumorph_shadow_dark))
         }
     }
 
+    override fun getItemCount(): Int = items.size
 }

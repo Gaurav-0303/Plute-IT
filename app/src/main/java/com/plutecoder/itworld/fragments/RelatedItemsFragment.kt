@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.plutecoder.itworld.R
-import com.plutecoder.itworld.adapters.RelatedItemsAdapter
+import com.plutecoder.itworld.adapters.RelatedItemsCategoryAdapter
 import com.plutecoder.itworld.databinding.FragmentRelatedItemsBinding
 import com.plutecoder.itworld.models.CategoryItem
 import com.plutecoder.itworld.viewModels.RelatedItemsViewModel
+import com.plutecoder.itworld.views.MainActivity
 
 class RelatedItemsFragment(private var categoryItemUid: String) : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentRelatedItemsBinding
-    private lateinit var myAdapter: RelatedItemsAdapter
-    private lateinit var itemList: ArrayList<CategoryItem>
+    private lateinit var myAdapter: RelatedItemsCategoryAdapter
+    private lateinit var itemList: ArrayList<Pair<String, List<CategoryItem>>>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,26 +34,35 @@ class RelatedItemsFragment(private var categoryItemUid: String) : BottomSheetDia
 
         val viewModel = ViewModelProvider(this)[RelatedItemsViewModel::class.java]
 
-//        (view.parent as View).setBackgroundColor(resources.getColor(android.R.color.transparent))
+        val allCategories = MainActivity.categoryViewModel?.categoriesList?.value ?: emptyList()
 
         itemList = ArrayList()
         setUpRecyclerView()
 
         viewModel.categoryItems.observe(viewLifecycleOwner, Observer { relatedItems ->
+
             itemList.clear()
-            for (categoryItem in relatedItems) {
-                itemList.add(categoryItem)
+
+            // Group related items by category title
+            val groupedMap = relatedItems.groupBy { item ->
+                allCategories.find { it.uid == item.categoryUid }?.title ?: "Others"
             }
+
+            // Convert grouped map to itemList format
+            for ((categoryTitle, itemsList) in groupedMap) {
+                itemList.add(Pair(categoryTitle, itemsList))
+            }
+
+            // Notify adapter
             myAdapter.notifyDataSetChanged()
         })
 
         viewModel.fetchRelatedItems(categoryItemUid)
-
     }
 
     private fun setUpRecyclerView() {
-        binding.bottomSheetRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        myAdapter = RelatedItemsAdapter(requireContext(), itemList)
+        binding.bottomSheetRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        myAdapter = RelatedItemsCategoryAdapter(requireContext(), itemList)
         binding.bottomSheetRv.adapter = myAdapter
     }
 

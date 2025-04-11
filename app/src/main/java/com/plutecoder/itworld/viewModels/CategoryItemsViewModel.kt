@@ -35,6 +35,7 @@ class CategoryItemsViewModel : ViewModel() {
 
                         for (itemSnapshot in snapshot.children) {
                             val uid = itemSnapshot.key // item UID
+                            val categoryUid = itemSnapshot.child("categoryUid").getValue(String::class.java)
                             val basicRoadmap = itemSnapshot.child("basicRoadmap").getValue(String::class.java)
                             val info = itemSnapshot.child("info").getValue(String::class.java)
                             val logo = itemSnapshot.child("logo").getValue(String::class.java)
@@ -58,6 +59,7 @@ class CategoryItemsViewModel : ViewModel() {
                             categoryItemList.add(
                                 CategoryItem(
                                     uid = uid,
+                                    categoryUid = categoryUid,
                                     basicRoadmap = basicRoadmap,
                                     info = info,
                                     logo = logo,
