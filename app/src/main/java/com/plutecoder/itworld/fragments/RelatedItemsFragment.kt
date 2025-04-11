@@ -45,7 +45,7 @@ class RelatedItemsFragment(private var categoryItemUid: String) : BottomSheetDia
 
             // Group related items by category title
             val groupedMap = relatedItems.groupBy { item ->
-                allCategories.find { it.uid == item.categoryUid }?.title ?: "Others"
+                allCategories.find { it.uid == item.categoryUid }?.let { "Related ${it.title}" } ?: "Others"
             }
 
             // Convert grouped map to itemList format
