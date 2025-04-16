@@ -34,24 +34,50 @@ class RoadmapActivity : AppCompatActivity() {
 
         val categoryItem = intent.getSerializableExtra("category_item") as CategoryItem
 
-        // Bottom sheet opening
-        findViewById<ImageView>(R.id.open_framework).setOnClickListener {
-            val relatedItemsFragment = RelatedItemsFragment(categoryItem.uid!!)
-            relatedItemsFragment.show(supportFragmentManager, relatedItemsFragment.tag)
+        val itemId = intent.getStringExtra("itemId")
+
+        if(itemId != null){
+            // Bottom sheet opening
+            findViewById<ImageView>(R.id.open_framework).setOnClickListener {
+                val relatedItemsFragment = RelatedItemsFragment(itemId)
+                relatedItemsFragment.show(supportFragmentManager, relatedItemsFragment.tag)
+            }
+
+            // Show data in top bar
+//            binding.header.title.text = categoryItem.name
+
+            // Go back
+            binding.header.backImageView.setOnClickListener { onBackPressed() }
+
+            setUpWebView(categoryItem)
+
+            if (isDarkModeEnabled(this)) {
+                binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
+                binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
+            }
+        }
+        else{
+            // Bottom sheet opening
+            findViewById<ImageView>(R.id.open_framework).setOnClickListener {
+                val relatedItemsFragment = RelatedItemsFragment(categoryItem.uid!!)
+                relatedItemsFragment.show(supportFragmentManager, relatedItemsFragment.tag)
+            }
+
+            // Show data in top bar
+            binding.header.title.text = categoryItem.name
+
+            // Go back
+            binding.header.backImageView.setOnClickListener { onBackPressed() }
+
+            setUpWebView(categoryItem)
+
+            if (isDarkModeEnabled(this)) {
+                binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
+                binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
+            }
         }
 
-        // Show data in top bar
-        binding.header.title.text = categoryItem.name
 
-        // Go back
-        binding.header.backImageView.setOnClickListener { onBackPressed() }
-
-        setUpWebView(categoryItem)
-
-        if (isDarkModeEnabled(this)) {
-            binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
-            binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
-        }
     }
 
     private fun showRoadmap(categoryItem: CategoryItem) {
