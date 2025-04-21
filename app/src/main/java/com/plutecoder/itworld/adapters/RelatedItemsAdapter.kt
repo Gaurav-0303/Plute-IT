@@ -34,23 +34,28 @@ class RelatedItemsAdapter(
         val item = items[position]
         holder.binding.title.text = item.name
         holder.binding.description.text = item.info
-
         Glide.with(context)
             .load(item.logo)
             .into(holder.binding.image!!);
 
+//        if (!item.uses.isNullOrEmpty()) {
+//            for (use in item.uses!!) {
+//                val chip: Chip = LayoutInflater.from(context)
+//                    .inflate(R.layout.chip_view_item, null, false) as Chip
+//                chip.text = use.title
+//
+//                chip.setOnClickListener {
+//                    context.showUsesDialog(use)
+//                }
+//
+//                holder.binding.featureChips?.addView(chip)
+//            }
+//        }
         if (!item.uses.isNullOrEmpty()) {
-            for (use in item.uses!!) {
-                val chip: Chip = LayoutInflater.from(context)
-                    .inflate(R.layout.chip_view_item, null, false) as Chip
-                chip.text = use.title
+            // Combine all titles into one string
+            val combinedTitle = "Uses :- " + item.uses!!.joinToString(", ") { it.title!! }
+            holder.binding.txtuses!!.text = combinedTitle
 
-                chip.setOnClickListener {
-                    context.showUsesDialog(use)
-                }
-
-                holder.binding.featureChips?.addView(chip)
-            }
         }
 
         if (isDarkModeEnabled(context)) {

@@ -1,0 +1,61 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp">
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardCornerRadius="18dp"
+        app:cardBackgroundColor="@color/white"
+        android:elevation="6dp">
+
+        <RelativeLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp">
+
+            <ImageButton
+                android:id="@+id/btnclose"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@drawable/baseline_close_24"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="Close" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Explore More Around"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/txtheading"
+                android:fontFamily="@font/rubikbold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_relateditem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:overScrollMode="never"
+                android:layout_below="@+id/title"
+                android:layout_marginBottom="10dp"
+                android:scrollbars="vertical"/>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

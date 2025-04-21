@@ -1,6 +1,9 @@
 package com.plutecoder.itworld.views
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -26,6 +29,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val itemid = intent.getStringExtra("itemId")
+        if(!itemid.isNullOrEmpty()){
+            val intent = Intent(this, RoadmapActivity::class.java).apply {
+                putExtra("itemId", itemid) // Pass the item uid to RoadmapActivity
+            }
+            startActivity(intent)
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -62,6 +74,17 @@ class MainActivity : AppCompatActivity() {
                 2 -> navigateFragment(AboutFragment(), "", "", "About")
                 3 -> navigateFragment(ConnectFragment(), "", "", "Connect")
             }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        val itemid = intent.getStringExtra("itemId")
+        if(!itemid.isNullOrEmpty()){
+            val intent = Intent(this, RoadmapActivity::class.java).apply {
+                putExtra("itemId", itemid) // Pass the item uid to RoadmapActivity
+            }
+            startActivity(intent)
         }
     }
 

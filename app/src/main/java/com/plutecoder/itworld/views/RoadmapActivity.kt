@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceResponse
@@ -13,6 +14,10 @@ import android.webkit.WebViewClient
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.plutecoder.itworld.R
 import com.plutecoder.itworld.databinding.ActivityRoadmapBinding
 import com.plutecoder.itworld.models.CategoryItem
@@ -24,6 +29,7 @@ class RoadmapActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRoadmapBinding
     private lateinit var webview: WebView
     private var isRoadmapLoaded = false
+    private lateinit var categoryItemNotification : CategoryItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,52 +38,75 @@ class RoadmapActivity : AppCompatActivity() {
 
         webview = findViewById(R.id.webview)
 
-        val categoryItem = intent.getSerializableExtra("category_item") as CategoryItem
 
         val itemId = intent.getStringExtra("itemId")
 
         if(itemId != null){
-            // Bottom sheet opening
-            findViewById<ImageView>(R.id.open_framework).setOnClickListener {
-                val relatedItemsFragment = RelatedItemsFragment(itemId)
-                relatedItemsFragment.show(supportFragmentManager, relatedItemsFragment.tag)
-            }
 
-            // Show data in top bar
-//            binding.header.title.text = categoryItem.name
+            //retrive item from firebase
+            val database = FirebaseDatabase.getInstance()
+            val itemRef = database.getReference("items").child(itemId ?: "")
+
+            itemRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        categoryItemNotification = snapshot.getValue(CategoryItem::class.java)!!
+
+                        // Show data in top bar
+                        binding.header.title.text = categoryItemNotification.name
+
+                        setUpWebView(categoryItemNotification)
+                    } else {
+                        Log.d("Firebase", "No item found with ID: $itemId")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("Firebase", "Database error: ${error.message}")
+                }
+            })
 
             // Go back
             binding.header.backImageView.setOnClickListener { onBackPressed() }
 
-            setUpWebView(categoryItem)
 
-            if (isDarkModeEnabled(this)) {
-                binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
-                binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
+            // Bottom sheet opening
+            findViewById<ImageView>(R.id.open_framework).setOnClickListener {
+                val relatedItemsDialog = RelatedItemDialog(itemId)
+                relatedItemsDialog.show(supportFragmentManager, relatedItemsDialog.tag)
             }
         }
         else{
+
+            val categoryItem = intent.getParcelableExtra<CategoryItem>("category_item")
+
+            Log.d("Gaurav", categoryItem.toString())
+
             // Bottom sheet opening
             findViewById<ImageView>(R.id.open_framework).setOnClickListener {
-                val relatedItemsFragment = RelatedItemsFragment(categoryItem.uid!!)
+                val relatedItemsFragment = RelatedItemsFragment(categoryItem?.uid!!)
                 relatedItemsFragment.show(supportFragmentManager, relatedItemsFragment.tag)
             }
 
             // Show data in top bar
-            binding.header.title.text = categoryItem.name
+            binding.header.title.text = categoryItem?.name
 
             // Go back
             binding.header.backImageView.setOnClickListener { onBackPressed() }
 
-            setUpWebView(categoryItem)
+            setUpWebView(categoryItem!!)
 
-            if (isDarkModeEnabled(this)) {
-                binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
-                binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
+            // Bottom sheet opening
+            findViewById<ImageView>(R.id.open_framework).setOnClickListener {
+                val relatedItemsDialog = RelatedItemDialog(categoryItem.uid!!)
+                relatedItemsDialog.show(supportFragmentManager, relatedItemsDialog.tag)
             }
         }
 
-
+        if (isDarkModeEnabled(this)) {
+            binding.flatCard.setShadowColorLight(ContextCompat.getColor(this, R.color.neumorph_shadow_light))
+            binding.flatCard.setShadowColorDark(ContextCompat.getColor(this, R.color.neumorph_shadow_dark))
+        }
     }
 
     private fun showRoadmap(categoryItem: CategoryItem) {

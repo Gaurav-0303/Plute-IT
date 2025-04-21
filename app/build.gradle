@@ -2,17 +2,18 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.firebase.crashlytics'
+    id 'kotlin-parcelize'
 //    id'com.google.gms.google-services'
 }
 
 android {
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         //applicationId "com.plutecoder.itworld"
         namespace("com.plutecoder.itworld")
         minSdk 23
-        targetSdk 34
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 

@@ -1,9 +1,14 @@
 package com.plutecoder.itworld.models
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import com.google.firebase.database.IgnoreExtraProperties
 
+@Parcelize
+@IgnoreExtraProperties
 data class Uses(
-    var title: String?,
-    var description: String?
-) : Serializable
-
+    var title: String? = null,
+    var description: String? = null
+) : Parcelable {
+    constructor() : this(null, null)
+}

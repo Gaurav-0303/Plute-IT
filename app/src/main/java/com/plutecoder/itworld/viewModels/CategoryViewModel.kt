@@ -34,7 +34,7 @@ class CategoryViewModel : ViewModel() {
                 for (categorySnapshot in snapshot.children) {
                     val uid = categorySnapshot.key
                     val uiType = categorySnapshot.child("Ui_type").getValue(String::class.java)
-                    val image = categorySnapshot.child("image").getValue(String::class.java)
+                    val image = categorySnapshot.child("imageUrl").getValue(String::class.java)
                     val title = categorySnapshot.child("title").getValue(String::class.java)
                     val subtitle = categorySnapshot.child("subtitle").getValue(String::class.java)
                     tempList.add(Category(uid, uiType, image, title, subtitle))
